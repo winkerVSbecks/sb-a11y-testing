@@ -9,13 +9,14 @@ import {
   Stack,
   Center,
   useBreakpointValue,
-  useColorModeValue,
   Container,
   HStack,
   Alert,
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  Link,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { keyframes } from '@emotion/react';
 import { SignUpForm } from './SignUpForm';
@@ -82,22 +83,11 @@ StorybookLogo.propTypes = {
 };
 
 const SignUpSuccess = () => (
-  <Alert
-    status="success"
-    variant="subtle"
-    flexDirection="column"
-    alignItems="center"
-    justifyContent="center"
-    textAlign="center"
-    height="200px"
-  >
-    <AlertIcon boxSize="40px" mr={0} />
-    <AlertTitle mt={4} mb={1} fontSize="lg">
-      Application submitted!
-    </AlertTitle>
-    <AlertDescription maxWidth="sm">
-      Thanks for submitting your application. Our team will get back to you
-      soon.
+  <Alert status="success" variant="subtle">
+    <AlertIcon />
+    <AlertTitle>Signup Successful!</AlertTitle>
+    <AlertDescription>
+      <Link>Continue »</Link>
     </AlertDescription>
   </Alert>
 );
@@ -158,7 +148,14 @@ export const SignUpScreen = () => {
           boxShadow={{ base: 'none', sm: useColorModeValue('md', 'md-dark') }}
           borderRadius={{ base: 'none', sm: 'xl' }}
         >
-          <SignUpForm onSubmit={handleFormSubmit} />
+          {formSubmission === 'SUBMITTING_SUCCESS' ? (
+            <SignUpSuccess />
+          ) : (
+            <SignUpForm
+              onSubmit={handleFormSubmit}
+              formSubmission={formSubmission}
+            />
+          )}
         </Box>
       </Stack>
     </Container>

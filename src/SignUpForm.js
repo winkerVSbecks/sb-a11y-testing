@@ -8,7 +8,6 @@ import {
   Input,
   Stack,
   HStack,
-  Text,
 } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 

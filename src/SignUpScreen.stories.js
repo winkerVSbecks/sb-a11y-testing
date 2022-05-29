@@ -1,6 +1,11 @@
 import React from 'react';
 import { rest } from 'msw';
-import { within, userEvent, waitFor } from '@storybook/testing-library';
+import {
+  within,
+  userEvent,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import { SignUpScreen } from './SignUpScreen';
 
@@ -19,21 +24,6 @@ export default {
 const Template = (args) => <SignUpScreen {...args} />;
 
 export const Default = Template.bind({});
-Default.parameters = {
-  msw: [
-    rest.post('/sign-up', (req, res, ctx) => {
-      const user = JSON.parse(req.body);
-
-      return res(
-        ctx.delay(2000),
-        ctx.json({
-          id: 1,
-          ...user,
-        })
-      );
-    }),
-  ],
-};
 
 export const EmailValidationError = Template.bind({});
 EmailValidationError.play = async ({ canvasElement }) => {
@@ -47,7 +37,7 @@ EmailValidationError.play = async ({ canvasElement }) => {
   // An element is valid if it has no aria-invalid attributes or an attribute value of "false".
   // The result of checkValidity() must also be true if it's a form element.
 
-  waitFor(() => {
+  await waitFor(() => {
     expect(emailInput).toBeInvalid();
     expect(emailInput).toHaveAccessibleDescription(
       'Please enter a correctly formatted email address'
@@ -64,7 +54,7 @@ PasswordValidationError.play = async ({ canvasElement }) => {
   userEvent.type(passwordInput, '1234');
 
   passwordInput.blur();
-  waitFor(() => {
+  await waitFor(() => {
     expect(passwordInput).toBeInvalid();
     expect(passwordInput).toHaveAccessibleDescription(
       'Please enter a password of minimum 6 characters'
@@ -84,10 +74,48 @@ VerifyPasswordError.play = async ({ canvasElement }) => {
 
   verifiedPasswordInput.blur();
 
-  waitFor(() => {
+  await waitFor(() => {
     expect(verifiedPasswordInput).toBeInvalid();
     expect(verifiedPasswordInput).toHaveAccessibleDescription(
       'Your passwords do not match'
     );
+  });
+};
+
+export const SubmitSuccess = Template.bind({});
+SubmitSuccess.parameters = {
+  msw: [
+    rest.post('/sign-up', (req, res, ctx) => {
+      const user = JSON.parse(req.body);
+
+      return res(
+        // ctx.delay(500),
+        ctx.json({
+          id: 1,
+          ...user,
+        })
+      );
+    }),
+  ],
+};
+SubmitSuccess.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+
+  const emailInput = canvas.getByLabelText(/email/i);
+  userEvent.type(emailInput, 'marcus@test.com');
+
+  const passwordInput = canvas.getByTestId('password');
+  userEvent.type(passwordInput, 'jh38aljDSfH37');
+
+  const verifiedPasswordInput = canvas.getByTestId('verifiedPassword');
+  userEvent.type(verifiedPasswordInput, 'jh38aljDSfH37');
+
+  const submitButton = canvas.getByRole('button', { name: /sign up/i });
+  userEvent.click(submitButton);
+
+  await waitFor(() => {
+    const alert = canvas.getByRole('alert');
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent('Signup Successful!');
   });
 };
