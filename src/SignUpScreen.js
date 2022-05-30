@@ -87,7 +87,7 @@ const SignUpSuccess = () => (
     <AlertIcon />
     <AlertTitle>Signup Successful!</AlertTitle>
     <AlertDescription>
-      <Link>Continue »</Link>
+      <Link href="#">Continue »</Link>
     </AlertDescription>
   </Alert>
 );

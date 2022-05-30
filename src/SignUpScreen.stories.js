@@ -89,7 +89,7 @@ SubmitSuccess.parameters = {
       const user = JSON.parse(req.body);
 
       return res(
-        // ctx.delay(500),
+        ctx.delay(2000),
         ctx.json({
           id: 1,
           ...user,
@@ -113,9 +113,7 @@ SubmitSuccess.play = async ({ canvasElement }) => {
   const submitButton = canvas.getByRole('button', { name: /sign up/i });
   userEvent.click(submitButton);
 
-  await waitFor(() => {
-    const alert = canvas.getByRole('alert');
-    expect(alert).toBeInTheDocument();
-    expect(alert).toHaveTextContent('Signup Successful!');
-  });
+  const alert = await canvas.findByRole('alert', undefined, { timeout: 5000 });
+  expect(alert).toBeInTheDocument();
+  expect(alert).toHaveTextContent('Signup Successful!');
 };

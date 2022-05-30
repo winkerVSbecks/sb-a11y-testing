@@ -13,39 +13,16 @@ import { Formik, Form } from 'formik';
 
 const errorMap = {
   email: {
-    required: {
-      normal: 'Please enter your email address',
-      tooltip:
-        'We do require an email address and a password as a minimum in order to be able to create an account for you to log in with',
-    },
-    format: {
-      normal: 'Please enter a correctly formatted email address',
-      tooltip:
-        'Your email address is formatted incorrectly and is not correct - please double check for misspelling',
-    },
+    required: 'Please enter your email address',
+    format: 'Please enter a correctly formatted email address',
   },
   password: {
-    required: {
-      normal: 'Please enter a password',
-      tooltip: 'A password is required to create an account',
-    },
-    length: {
-      normal: 'Please enter a password of minimum 6 characters',
-      tooltip:
-        'For security reasons we enforce a password length of minimum 6 characters - but have no other requirements',
-    },
+    required: 'Please enter a password',
+    length: 'Please enter a password of minimum 6 characters',
   },
   verifiedPassword: {
-    required: {
-      normal: 'Please verify your password',
-      tooltip:
-        'Verification of your password is required to ensure no errors in the spelling of the password',
-    },
-    match: {
-      normal: 'Your passwords do not match',
-      tooltip:
-        'Your verification password has to match your password to make sure you have not misspelled',
-    },
+    required: 'Please verify your password',
+    match: 'Your passwords do not match',
   },
 };
 
@@ -59,31 +36,25 @@ const validate = ({ email, password, verifiedPassword }) => {
   const errors = {};
 
   if (!email) {
-    errors.email = errorMap.email.required.normal;
-    errors.emailTooltip = errorMap.email.required.tooltip;
+    errors.email = errorMap.email.required;
   } else {
     const validEmail = email.match(emailRegExp);
 
     if (validEmail === null) {
-      errors.email = errorMap.email.format.normal;
-      errors.emailTooltip = errorMap.email.format.tooltip;
+      errors.email = errorMap.email.format;
     }
   }
 
   if (!password) {
-    errors.password = errorMap.password.required.normal;
-    errors.passwordTooltip = errorMap.password.required.tooltip;
+    errors.password = errorMap.password.required;
   } else if (password.length < 6) {
-    errors.password = errorMap.password.length.normal;
-    errors.passwordTooltip = errorMap.password.length.tooltip;
+    errors.password = errorMap.password.length;
   }
 
   if (!verifiedPassword) {
-    errors.verifiedPassword = errorMap.verifiedPassword.required.normal;
-    errors.verifiedPasswordTooltip = errorMap.verifiedPassword.required.tooltip;
+    errors.verifiedPassword = errorMap.verifiedPassword.required;
   } else if (password !== verifiedPassword) {
-    errors.verifiedPassword = errorMap.verifiedPassword.match.normal;
-    errors.verifiedPasswordTooltip = errorMap.verifiedPassword.match.tooltip;
+    errors.verifiedPassword = errorMap.verifiedPassword.match;
   }
 
   return errors;
@@ -100,8 +71,20 @@ export const SignUpForm = ({ onSubmit }) => {
       onSubmit={onSubmit}
       validate={validate}
     >
-      {({ touched, errors, values, handleChange, handleBlur }) => (
-        <Stack as={Form} noValidate spacing="6">
+      {({
+        touched,
+        errors,
+        values,
+        isSubmitting,
+        handleChange,
+        handleBlur,
+      }) => (
+        <Stack
+          as={Form}
+          noValidate
+          aria-disabled={isSubmitting ? 'true' : 'false'}
+          spacing="6"
+        >
           <Stack spacing="5">
             <FormControl
               colorScheme="brand"
