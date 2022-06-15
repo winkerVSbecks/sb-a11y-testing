@@ -1,0 +1,365 @@
+[
+  {
+    "name": "Accordion",
+    "description": "An accordion is a vertically stacked list of interactive items. Each item can be collapsed with only a summary visible or “expanded” to show the full content for that item."
+  },
+  {
+    "name": "Alert",
+    "description": "Alert is a short message that provides contextual feedback in a prominent way."
+  },
+  {
+    "name": "Autocomplete",
+
+    "description": "Autocomplete is a text input that proactively suggests options based on the user’s initial input. The suggested options appear alongside the input in a panel."
+  },
+  {
+    "name": "Avatar",
+
+    "description": "Avatar is a graphical representation of a user or entity. It’s often a photo, illustration, or text initial."
+  },
+  {
+    "name": "Badge",
+
+    "description": "Badge is a compact label that appears beside a primary interface area which is used to represent status or metadata for that area."
+  },
+  {
+    "name": "Banner",
+
+    "description": "Banner is a prominent message that is used to inform users about changes or give context to the page content. It’s often displayed as one of the first items on a page or section."
+  },
+  {
+    "name": "Breadcrumb",
+
+    "description": "Breadcrumb is a list of links that shows the location of the current page in an app hierarchy. It helps users understand where they are relative to other pages and provides convenient links to navigate to other pages."
+  },
+  {
+    "name": "Button",
+
+    "description": "Button is a clickable interactive element that triggers a response. You can place text and icons inside of a button. Buttons are often used for form submissions and to toggle elements into view."
+  },
+  {
+    "name": "Calendar",
+
+    "description": "Calendar is a date selection interface that allows you to choose a date or a range of dates using a calendar view. It’s often used to filter information by date."
+  },
+  {
+    "name": "Card",
+
+    "description": "Card is a content container that represents a single object and related actions. For example, an article or task."
+  },
+  {
+    "name": "Carousel",
+
+    "description": "Carousel is a slideshow that cycles through content like images or text. Carousels may include support for previous and next controls."
+  },
+  {
+    "name": "Chart",
+
+    "description": "Chart is a graphical representation of data. A chart visualizes large sets of information to help users understand trends and relationships between data points."
+  },
+  {
+    "name": "Chat",
+
+    "description": "Chat is a display of chat logs between users of a system. It includes a number of sub components to compose different types of chat items."
+  },
+  {
+    "name": "Checkbox",
+
+    "description": "A checkbox is a square box that can be activated or deactivated when ticked. Use checkboxes to select one or more options from a list of choices."
+  },
+  {
+    "name": "Chip",
+
+    "description": "Chip is a compact label that appears beside a primary interface area which is used to represent status or metadata for that area."
+  },
+  {
+    "name": "Code",
+
+    "description": "Code is used to display strings or small blocks of code. Code can be copied and inserted in a code editor."
+  },
+  {
+    "name": "Collapse",
+
+    "description": "Collapse is a vertically stacked list of interactive items. Each item can be collapsed with only a summary visible or “expanded” to show the full content for that item."
+  },
+  {
+    "name": "Color picker",
+
+    "description": "Color Picker is an input that allows users to pick from predefined colors (swatches) or a color field. When picked, it will return color values in RGB, HEX, or HSL."
+  },
+  {
+    "name": "Combobox",
+
+    "description": "Combobox is an autocomplete input that proactively suggests options based on the user’s initial input. It allows you to filter a list of options and select from predefined options. The options appear alongside the input in a panel."
+  },
+  {
+    "name": "Context menu",
+
+    "description": "Context Menu is a menu that offers a set of actions related to the current state of what a user clicks on. Context menus often appear on right (default) or left click."
+  },
+  {
+    "name": "Data grid",
+
+    "description": "Data grid is a table that visualizes a data set and includes options for filtering, sorting, templates, row selection, row grouping, row pinning and movable columns. Data grids are often used with dynamic or large data sets."
+  },
+  {
+    "name": "Date picker",
+
+    "description": "Date picker is a date selection interface that allows you to choose a date or a range of dates using a calendar view. It’s often used to filter information by date."
+  },
+  {
+    "name": "Details",
+
+    "description": "Details is an expandable panel that displays a summary of content and expands to reveal more help text when clicked on. It’s often used to make a dense content easier to skim."
+  },
+  {
+    "name": "Dialog",
+
+    "description": "Dialog is a prompt that appears above other content containing urgent information or decisions. Dialog’s intentionally interrupt the user flow and require user input to be dismissed."
+  },
+  {
+    "name": "Disclosure",
+
+    "description": "Disclosure is an expandable panel that displays a summary of content and expands to reveal more help text when clicked on. It’s often used to make a dense content easier to skim."
+  },
+  {
+    "name": "Divider",
+
+    "description": "Divider is a separator between sections of content or groups of items. It often contains a horizontal line."
+  },
+  {
+    "name": "Drawer",
+
+    "description": "Drawer is a panel that slides out from the edges of the screen. It’s often used for navigation, menus, or to display details about the page a user is on."
+  },
+  {
+    "name": "Expandable",
+
+    "description": "Expandable is a vertically stacked list of interactive items. Each item can be collapsed with only a summary visible or “expanded” to show the full content for that item."
+  },
+  {
+    "name": "Flex",
+
+    "description": "Flex is a layout container that uses flexbox to position its children."
+  },
+  {
+    "name": "Footer",
+
+    "description": "Footer is a section at the bottom of a page that displays links to related content, copyright, or legal information."
+  },
+  {
+    "name": "Forms",
+
+    "description": "Form is used to collect user input to be submitted to an application. It’s often composed of form elements that include inputs, buttons, checkboxes, and radios."
+  },
+  {
+    "name": "Grid",
+
+    "description": "Grid is a container used to build layouts that align to a user-defined system of columns and rows."
+  },
+  {
+    "name": "Header",
+
+    "description": "Header is a section at the top of a page that displays site name and navigation."
+  },
+  {
+    "name": "Heading",
+
+    "description": "Heading is a title or subtitle displayed in a web app or website. Heading often varies in size depending on importance of the content it represents."
+  },
+  {
+    "name": "Hero",
+
+    "description": "Hero is a large banner or image that appears as one of the first items on a page. It’s a primary visual element that is used to focus user attention on key content or promotions."
+  },
+  {
+    "name": "Icon",
+
+    "description": "Icon is a visual symbol that indicates the purpose of an interface element. It’s used to represent ideas, content types, and actions."
+  },
+  {
+    "name": "Image",
+
+    "description": "Image is an element for embedding images. It’s often used to display images in different sizes and formats depending on device capabilities and viewport size."
+  },
+  {
+    "name": "Input",
+
+    "description": "Input is a form element that accepts a single line of text."
+  },
+  {
+    "name": "Label",
+
+    "description": "Label is a text caption or description that describes the type of input a form field requires. Labels are often positioned beside the form field."
+  },
+  {
+    "name": "Layout",
+
+    "description": "Layout is a layout container that is used to position children in predetermined areas. It’s often used to apply consistent positioning for content across pages in an application."
+  },
+  {
+    "name": "Link",
+
+    "description": "Link is a reference to a location on the web. When clicked, a link will direct you to a destination like a document, asset, or email address."
+  },
+  {
+    "name": "List",
+
+    "description": "List is a grouping of related items. List can be ordered with numbers or unordered with bullets."
+  },
+  {
+    "name": "Listbox",
+
+    "description": "Listbox is a vertical list of interactive elements that users can select from."
+  },
+  {
+    "name": "Loading",
+
+    "description": "Loading is a visual indicator that shows the status of an ongoing process happening in the background. It’s often used to communicate that the user has to wait before the interface is ready for interaction."
+  },
+  {
+    "name": "Menu",
+
+    "description": "Menu is an interactive list of options that a user can choose. The options are hidden by default and revealed when a user interacts with an element. Menu is often used to show actions or navigation. It’s different from Select because it’s not a form input."
+  },
+  {
+    "name": "Modal",
+
+    "description": "Modal is a full screen overlay that sits atop the page content. It’s used to focus attention on an important task or message and requires user input to be dismissed."
+  },
+  {
+    "name": "Nav",
+
+    "description": "Nav is a container that’s used to list navigation links. It’s often used to direct users to other pages in an app or as a table of contents for the current page. f"
+  },
+  {
+    "name": "Notification",
+
+    "description": "Notification is a message that informs users of updates or changes to system status. It can appear above or inline with the content."
+  },
+  {
+    "name": "Page",
+
+    "description": "Page is a layout container that is used to position children in predetermined areas. It’s often used to apply consistent positioning for content across pages in an application."
+  },
+  {
+    "name": "Pagination",
+
+    "description": "Pagination is an end user’s controls for navigating in between data that’s been broken up into multiple pages like a list or a document."
+  },
+  {
+    "name": "Pill",
+
+    "description": "Pill is a compact label that appears beside a primary interface area which is used to represent status or metadata for that area."
+  },
+  {
+    "name": "Popover",
+
+    "description": "Popover is a message box that displays extra information about an element. It can appear on hover, click, or tap."
+  },
+  {
+    "name": "Progress",
+
+    "description": "Progress is a visual indicator that shows the users progress through a series of steps. It’s often used to keep the user focussed toward completing a task."
+  },
+  {
+    "name": "Radio",
+
+    "description": "Radio is a circular element that can be activated or deactivated when ticked. It’s used to select a single option from a list of choices."
+  },
+  {
+    "name": "Rating",
+
+    "description": "Rating is a widget that allow users to submit and view feedback. It’s a straightforward way to visualize the sentiment surrounding a product or item."
+  },
+  {
+    "name": "Search",
+
+    "description": "Search is an input that allows users to find content by entering a word or phrase."
+  },
+  {
+    "name": "Select",
+
+    "description": "Select is a type of input that allows users to choose one or more options from a list of choices. The options are hidden by default and revealed when a user interacts with an element. It shows the currently selected option in its default collapsed state."
+  },
+  {
+    "name": "Separator",
+
+    "description": "Separator is a separator between sections of content or groups of items. It often contains a horizontal line."
+  },
+  {
+    "name": "Slider",
+
+    "description": "Slider is a form element for choosing a value from within a range of values. It’s often used to adjust settings by moving a slider handle along a horizontal track."
+  },
+  {
+    "name": "Spinner",
+
+    "description": "Spinner is a visual indicator that shows the status of an ongoing process happening in the background. It’s often used to communicate that the user has to wait before the interface is ready for interaction."
+  },
+  {
+    "name": "Stack",
+
+    "description": "Stack is a layout container used to apply consistent spacing between its children."
+  },
+  {
+    "name": "Switch",
+
+    "description": "Switch is a control used to toggle a setting on or off."
+  },
+  {
+    "name": "Table",
+
+    "description": "Table is an element that visualizes a data set in rows and columns. It’s often used to embed structured data in a way that’s easy to scan."
+  },
+  {
+    "name": "Tabs",
+
+    "description": "Tabs is a way to navigate between multiple views of information. It’s used to fit more information in a smaller area."
+  },
+  {
+    "name": "Tag",
+
+    "description": "Tag is a compact label that appears beside a primary interface area which is used to represent status or metadata for that area."
+  },
+  {
+    "name": "Text",
+
+    "description": "Text is a style component that renders a string of characters, words, or paragraphs in a consistent font size and weight."
+  },
+  {
+    "name": "Textarea",
+
+    "description": "Textarea is a form element that accepts multiple lines of text."
+  },
+  {
+    "name": "Text field",
+
+    "description": "Text field is a form element that accepts a single line of text or multiple lines of text."
+  },
+  {
+    "name": "Title",
+
+    "description": "Title is text that describes the content of a page or section. It often varies in size depending on the importance of the content it represents."
+  },
+  {
+    "name": "Toast",
+
+    "description": "Toast is a short message that informs users of updates or changes to system status. It appears above the content."
+  },
+  {
+    "name": "Toggle",
+
+    "description": "Toggle is a control used to toggle a setting on or off."
+  },
+  {
+    "name": "Tooltip",
+
+    "description": "Tooltip is a message box that displays extra information about an element. It can appear on hover, click, or tap."
+  },
+  {
+    "name": "Typography",
+
+    "description": "Typography is a system of font sizes and weights that is used to organize content."
+  }
+]

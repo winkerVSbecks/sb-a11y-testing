@@ -13,7 +13,6 @@ export default {
   component: SignUpScreen,
   title: 'SignUpScreen',
   parameters: {
-    backgrounds: { default: 'white' },
     layout: 'fullscreen',
   },
   argTypes: {
