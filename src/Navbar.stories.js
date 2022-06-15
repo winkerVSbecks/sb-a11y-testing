@@ -3,7 +3,7 @@ import { Navbar } from './Navbar';
 
 export default {
   component: Navbar,
-  title: 'Dashboard/Navbar',
+  title: 'Components/Navbar',
 };
 
 const Template = (args) => <Navbar {...args} />;

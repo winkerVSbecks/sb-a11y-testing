@@ -3,7 +3,7 @@ import { Stats } from './Stats';
 
 export default {
   component: Stats,
-  title: 'Dashboard/Stats',
+  title: 'Components/Stats',
 };
 
 const Template = (args) => <Stats {...args} />;

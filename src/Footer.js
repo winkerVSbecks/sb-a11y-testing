@@ -16,7 +16,7 @@ export const Footer = () => (
     bg="gray.100"
     py={{ base: '12', md: '16' }}
   >
-    <Stack maxW="container.lg" mx="auto" spacing={{ base: '4', md: '5' }}>
+    <Stack maxW="container.sm" mx="auto" spacing={{ base: '4', md: '5' }}>
       <Stack justify="space-between" direction="row" align="center">
         <Logo />
         <ButtonGroup variant="ghost">

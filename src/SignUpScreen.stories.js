@@ -11,7 +11,7 @@ import { SignUpScreen } from './SignUpScreen';
 
 export default {
   component: SignUpScreen,
-  title: 'SignUpScreen',
+  title: 'Pages/SignUpScreen',
   parameters: {
     layout: 'fullscreen',
   },

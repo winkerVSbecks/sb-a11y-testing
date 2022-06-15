@@ -6,7 +6,7 @@ import { AddProject } from './AddProject';
 
 export default {
   component: AddProject,
-  title: 'Dashboard/AddProject',
+  title: 'Components/AddProject',
   argTypes: {
     onImport: { action: 'onImport' },
   },
@@ -16,95 +16,75 @@ const Template = (args) => <AddProject {...args} />;
 
 export const Default = Template.bind({});
 
-// export const EmailValidationError = Template.bind({});
-// EmailValidationError.play = async ({ canvasElement }) => {
-//   const canvas = within(canvasElement);
+export const UrlValidationError = Template.bind({});
+UrlValidationError.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
 
-//   const emailInput = canvas.getByLabelText(/email/i);
-//   expect(emailInput).toBeRequired();
-//   userEvent.type(emailInput, 'marcus');
+  const urlInput = canvas.getByLabelText(/URL/i);
+  expect(urlInput).toBeRequired();
+  await userEvent.type(urlInput, 'my-storybook');
+  await urlInput.blur();
 
-//   emailInput.blur();
-//   // An element is valid if it has no aria-invalid attributes or an attribute value of "false".
-//   // The result of checkValidity() must also be true if it's a form element.
+  await waitFor(() => {
+    // An element is valid if it has no aria-invalid attributes
+    // or an attribute value of "false"
+    expect(urlInput).toBeInvalid();
+    expect(urlInput).toHaveAccessibleDescription(
+      'Please enter a correctly formatted URL'
+    );
+  });
+};
 
-//   await waitFor(() => {
-//     expect(emailInput).toBeInvalid();
-//     expect(emailInput).toHaveAccessibleDescription(
-//       'Please enter a correctly formatted email address'
-//     );
-//   });
-// };
+export const SubmitFailed = Template.bind({});
+SubmitFailed.parameters = {
+  msw: [
+    rest.post('/project', (req, res, ctx) => {
+      return res(ctx.status(401));
+    }),
+  ],
+};
+SubmitFailed.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
 
-// export const PasswordValidationError = Template.bind({});
-// PasswordValidationError.play = async ({ canvasElement }) => {
-//   const canvas = within(canvasElement);
+  const urlInput = canvas.getByLabelText(/URL/i);
+  await userEvent.type(urlInput, 'my-storybook.com');
 
-//   const passwordInput = canvas.getByTestId('password');
-//   expect(passwordInput).toBeRequired();
-//   userEvent.type(passwordInput, '1234');
+  const submitButton = canvas.getByRole('button', { name: /Import/i });
+  await userEvent.click(submitButton);
 
-//   passwordInput.blur();
-//   await waitFor(() => {
-//     expect(passwordInput).toBeInvalid();
-//     expect(passwordInput).toHaveAccessibleDescription(
-//       'Please enter a password of minimum 6 characters'
-//     );
-//   });
-// };
+  const alert = await canvas.findByRole('alert', undefined, { timeout: 5000 });
+  expect(alert).toBeInTheDocument();
+  expect(alert).toHaveTextContent(
+    'Something went wrong. Unable to add this project.'
+  );
+};
 
-// export const VerifyPasswordError = Template.bind({});
-// VerifyPasswordError.play = async ({ canvasElement }) => {
-//   const canvas = within(canvasElement);
+export const SubmitSuccess = Template.bind({});
+SubmitSuccess.parameters = {
+  msw: [
+    rest.post('/project', (req, res, ctx) => {
+      const project = JSON.parse(req.body);
 
-//   const passwordInput = canvas.getByTestId('password');
-//   userEvent.type(passwordInput, '123456');
+      return res(
+        ctx.delay(1000),
+        ctx.json({
+          id: 83470,
+          url: project.storybookUrl,
+        })
+      );
+    }),
+  ],
+};
+SubmitSuccess.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
 
-//   const verifiedPasswordInput = canvas.getByTestId('verifiedPassword');
-//   userEvent.type(verifiedPasswordInput, '12345678');
+  const urlInput = canvas.getByLabelText(/URL/i);
+  await userEvent.type(urlInput, 'my-storybook.com');
 
-//   verifiedPasswordInput.blur();
+  const submitButton = canvas.getByRole('button', { name: /Import/i });
+  await userEvent.click(submitButton);
 
-//   await waitFor(() => {
-//     expect(verifiedPasswordInput).toBeInvalid();
-//     expect(verifiedPasswordInput).toHaveAccessibleDescription(
-//       'Your passwords do not match'
-//     );
-//   });
-// };
-
-// export const SubmitSuccess = Template.bind({});
-// SubmitSuccess.parameters = {
-//   msw: [
-//     rest.post('/sign-up', (req, res, ctx) => {
-//       const user = JSON.parse(req.body);
-
-//       return res(
-//         ctx.delay(2000),
-//         ctx.json({
-//           id: 1,
-//           ...user,
-//         })
-//       );
-//     }),
-//   ],
-// };
-// SubmitSuccess.play = async ({ canvasElement }) => {
-//   const canvas = within(canvasElement);
-
-//   const emailInput = canvas.getByLabelText(/email/i);
-//   userEvent.type(emailInput, 'marcus@test.com');
-
-//   const passwordInput = canvas.getByTestId('password');
-//   userEvent.type(passwordInput, 'jh38aljDSfH37');
-
-//   const verifiedPasswordInput = canvas.getByTestId('verifiedPassword');
-//   userEvent.type(verifiedPasswordInput, 'jh38aljDSfH37');
-
-//   const submitButton = canvas.getByRole('button', { name: /sign up/i });
-//   userEvent.click(submitButton);
-
-//   const alert = await canvas.findByRole('alert', undefined, { timeout: 5000 });
-//   expect(alert).toBeInTheDocument();
-//   expect(alert).toHaveTextContent('Signup Successful!');
-// };
+  const alert = await canvas.findByRole('alert', undefined, { timeout: 5000 });
+  expect(alert).toBeInTheDocument();
+  expect(alert).toHaveTextContent('Project added successfully');
+};

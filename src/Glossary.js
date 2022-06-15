@@ -1,42 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Tabs as ChakraTabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  useColorModeValue,
+  VStack,
+  Heading,
+  Text,
+  Select,
+  LinkBox,
+  LinkOverlay,
+  FormControl,
+  FormLabel,
 } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 
-// https://storybook.js.org/showcase/tag/accordion
-
-export const Glossary = () => {
-  const colors = useColorModeValue(
-    ['red.50', 'teal.50', 'blue.50'],
-    ['red.900', 'teal.900', 'blue.900']
-  );
-  const [tabIndex, setTabIndex] = React.useState(0);
-  const bg = colors[tabIndex];
+export const Glossary = ({ definitions }) => {
+  const [activeType, setActiveType] = useState(definitions[0]);
 
   return (
-    <ChakraTabs
-      onChange={(index) => {
-        console.log(index);
-        setTabIndex(index);
-      }}
-      bg={bg}
-      index={tabIndex}
-    >
-      <TabList>
-        <Tab>Red</Tab>
-        <Tab>Teal</Tab>
-        <Tab>Blue</Tab>
-      </TabList>
-      <TabPanels p="2rem">
-        <TabPanel>The Primary Colors</TabPanel>
-        <TabPanel>Are 1, 2, 3</TabPanel>
-        <TabPanel>Red, yellow and blue.</TabPanel>
-      </TabPanels>
-    </ChakraTabs>
+    <VStack spacing={4}>
+      <FormControl>
+        <FormLabel htmlFor="component-type" srOnly>
+          Component type
+        </FormLabel>
+        <Select
+          id="component-type"
+          placeholder="Select component type"
+          onChange={(e) => {
+            setActiveType(definitions[e.target.value]);
+          }}
+        >
+          {definitions.map((type, idx) => (
+            <option value={idx} selected={type.name === activeType.name}>
+              {type.name}
+            </option>
+          ))}
+        </Select>
+      </FormControl>
+      <LinkBox p={5} shadow="base" borderRadius="xl">
+        <Heading fontSize="xl">{activeType.name}</Heading>
+        <Text mt={4}>{activeType.description}</Text>
+
+        <LinkOverlay
+          href={`https://storybook.js.org/showcase/tag/${activeType.slug}`}
+          color="brand.300"
+          isExternal
+        >
+          Browse examples <ExternalLinkIcon mx="2px" />
+        </LinkOverlay>
+      </LinkBox>
+    </VStack>
   );
 };

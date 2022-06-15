@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
 import {
   Button,
   FormControl,
@@ -7,6 +6,10 @@ import {
   FormErrorMessage,
   Input,
   HStack,
+  Alert,
+  AlertIcon,
+  CloseButton,
+  useDisclosure,
   Text,
 } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
@@ -38,71 +41,119 @@ const validate = ({ storybookUrl }) => {
   return errors;
 };
 
-export const AddProject = ({ onSubmit }) => {
-  return (
-    <Formik
-      initialValues={{
-        email: '',
-        password: '',
-        verifiedPassword: '',
-      }}
-      onSubmit={onSubmit}
-      validate={validate}
-    >
-      {({
-        touched,
-        errors,
-        values,
-        isSubmitting,
-        handleChange,
-        handleBlur,
-      }) => (
-        <HStack
-          as={Form}
-          noValidate
-          aria-disabled={isSubmitting ? 'true' : 'false'}
-          spacing="3"
-          mb={6}
-          alignItems="flex-start"
-        >
-          <FormControl
-            id="storybookUrl"
-            isRequired
-            // isInvalid={touched.storybookUrl && errors.storybookUrl}
-          >
-            <FormLabel srOnly>Storybook URL</FormLabel>
-            <Input
-              type="text"
-              placeholder="Enter the URL for the Storybook"
-              size="lg"
-              fontSize="md"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.storybookUrl}
-            />
-            {/* <FormErrorMessage>{errors.storybookUrl}</FormErrorMessage> */}
-            {touched.storybookUrl && errors.storybookUrl && (
-              <Text color="red" mt={2}>
-                {errors.storybookUrl}
-              </Text>
-            )}
-          </FormControl>
-          <Button
-            type="submit"
-            fontWeight="bold"
-            fontSize="md"
-            colorScheme="brand"
-            size="lg"
-            isLoading={isSubmitting}
-          >
-            Import
-          </Button>
-        </HStack>
-      )}
-    </Formik>
-  );
-};
+export const AddProject = () => {
+  const {
+    isOpen: submitSuccessful,
+    onClose: closeSuccessAlert,
+    onOpen: openSuccessAlert,
+  } = useDisclosure({ defaultIsOpen: false });
 
-AddProject.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  const {
+    isOpen: submitFailed,
+    onClose: closeFailedAlert,
+    onOpen: openFailedAlert,
+  } = useDisclosure({ defaultIsOpen: false });
+
+  const handleFormSubmit = useCallback(
+    async ({ storybookUrl }, { setSubmitting, resetForm }) => {
+      setSubmitting(true);
+
+      fetch('/project', {
+        method: 'POST',
+        body: JSON.stringify({ storybookUrl }),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          setSubmitting(false);
+          openSuccessAlert();
+          resetForm({
+            values: { storybookUrl: '' },
+          });
+        })
+        .catch(() => {
+          openFailedAlert();
+          setSubmitting(false);
+        });
+    },
+    [openSuccessAlert, openFailedAlert]
+  );
+
+  return (
+    <>
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+          verifiedPassword: '',
+        }}
+        onSubmit={handleFormSubmit}
+        validate={validate}
+      >
+        {({
+          touched,
+          errors,
+          values,
+          isSubmitting,
+          handleChange,
+          handleBlur,
+        }) => (
+          <HStack
+            as={Form}
+            noValidate
+            aria-disabled={isSubmitting ? 'true' : 'false'}
+            spacing="3"
+            mb={8}
+            alignItems="flex-start"
+          >
+            <FormControl
+              id="storybookUrl"
+              isRequired
+              isInvalid={touched.storybookUrl && errors.storybookUrl}
+            >
+              <FormLabel srOnly>Storybook URL</FormLabel>
+              <Input
+                type="text"
+                placeholder="Enter the URL for the Storybook"
+                size="lg"
+                fontSize="md"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.storybookUrl}
+              />
+              <FormErrorMessage>{errors.storybookUrl}</FormErrorMessage>
+              {/* {touched.storybookUrl && errors.storybookUrl && (
+                <Text color="red" mt={2}>
+                  {errors.storybookUrl}
+                </Text>
+              )} */}
+            </FormControl>
+            <Button
+              type="submit"
+              fontWeight="bold"
+              fontSize="md"
+              colorScheme="blue"
+              size="lg"
+              isLoading={isSubmitting}
+            >
+              Import
+            </Button>
+          </HStack>
+        )}
+      </Formik>
+      {submitSuccessful && (
+        <Alert status="success">
+          <AlertIcon />
+          Project added successfully
+          <CloseButton ml="auto" onClick={closeSuccessAlert} />
+        </Alert>
+      )}
+      {submitFailed && (
+        <Alert status="error">
+          <AlertIcon />
+          Something went wrong. Unable to add this project.
+          <CloseButton ml="auto" onClick={closeFailedAlert} />
+        </Alert>
+      )}
+    </>
+  );
 };
