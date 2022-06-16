@@ -26,7 +26,10 @@ export const Navbar = () => {
           <HStack spacing="10" justify="space-between">
             <Logo />
             {isDesktop ? (
-              <ButtonGroup variant="link" spacing="8">
+              <ButtonGroup
+                variant="link"
+                /* colorScheme="primary" */ spacing="8"
+              >
                 {['Showcase', 'Docs', 'Blog'].map((item) => (
                   <Button key={item}>{item}</Button>
                 ))}
