@@ -119,17 +119,15 @@ export const AddProject = () => {
                 onBlur={handleBlur}
                 value={values.storybookUrl}
               />
-              {touched.storybookUrl && errors.storybookUrl && (
-                <Text color="red" mt={2}>
-                  {errors.storybookUrl}
-                </Text>
-              )}
+              <FormErrorMessage color="red.600">
+                {errors.storybookUrl}
+              </FormErrorMessage>
             </FormControl>
             <Button
               type="submit"
               fontWeight="bold"
               fontSize="md"
-              colorScheme="blue"
+              colorScheme="brand"
               size="lg"
               isLoading={isSubmitting}
             >

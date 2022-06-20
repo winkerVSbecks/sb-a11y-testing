@@ -23,16 +23,19 @@ export const Footer = () => (
           <IconButton
             as="a"
             href="https://www.linkedin.com/company/74529112/"
+            aria-label="LinkedIn"
             icon={<FaLinkedin fontSize="1.25rem" />}
           />
           <IconButton
             as="a"
             href="https://github.com/storybookjs/"
+            aria-label="GitHub"
             icon={<FaGithub fontSize="1.25rem" />}
           />
           <IconButton
             as="a"
             href="https://twitter.com/storybookjs/"
+            aria-label="Twitter"
             icon={<FaTwitter fontSize="1.25rem" />}
           />
         </ButtonGroup>
