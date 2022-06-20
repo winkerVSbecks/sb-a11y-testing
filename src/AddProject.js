@@ -19,7 +19,6 @@ const errorMap = {
   format: 'Please enter a correctly formatted URL',
 };
 
-// https://emailregex.com/
 const urlRegExp = new RegExp(
   // eslint-disable-next-line no-useless-escape
   /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi
@@ -120,18 +119,15 @@ export const AddProject = () => {
                 onBlur={handleBlur}
                 value={values.storybookUrl}
               />
-              <FormErrorMessage>{errors.storybookUrl}</FormErrorMessage>
-              {/* {touched.storybookUrl && errors.storybookUrl && (
-                <Text color="red" mt={2}>
-                  {errors.storybookUrl}
-                </Text>
-              )} */}
+              <FormErrorMessage color="red.600">
+                {errors.storybookUrl}
+              </FormErrorMessage>
             </FormControl>
             <Button
               type="submit"
               fontWeight="bold"
               fontSize="md"
-              colorScheme="blue"
+              colorScheme="brand"
               size="lg"
               isLoading={isSubmitting}
             >

@@ -9,11 +9,7 @@ import {
 } from '@chakra-ui/react';
 
 export const Stats = ({ data }) => (
-  <StatGroup
-    maxWidth="xl"
-    role="meter"
-    aria-title="Stat cards" /* aria-label */
-  >
+  <StatGroup maxWidth="xl" role="meter" aria-label="Stat cards">
     {data.map((stat) => (
       <Stat
         key={stat.type}

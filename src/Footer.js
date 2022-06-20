@@ -19,23 +19,23 @@ export const Footer = () => (
     <Stack maxW="container.sm" mx="auto" spacing={{ base: '4', md: '5' }}>
       <Stack justify="space-between" direction="row" align="center">
         <Logo />
-        <ButtonGroup variant="ghost">
+        <ButtonGroup variant="ghost" aria-label="Social links">
           <IconButton
             as="a"
             href="https://www.linkedin.com/company/74529112/"
-            // aria-label="LinkedIn"
+            aria-label="LinkedIn"
             icon={<FaLinkedin fontSize="1.25rem" />}
           />
           <IconButton
             as="a"
             href="https://github.com/storybookjs/"
-            // aria-label="GitHub"
+            aria-label="GitHub"
             icon={<FaGithub fontSize="1.25rem" />}
           />
           <IconButton
             as="a"
             href="https://twitter.com/storybookjs/"
-            // aria-label="Twitter"
+            aria-label="Twitter"
             icon={<FaTwitter fontSize="1.25rem" />}
           />
         </ButtonGroup>

@@ -15,7 +15,7 @@ export const DashboardScreen = ({ glossary, stats }) => (
           <Heading as="h3" size="xl" mb={4}>
             Component Encyclopedia dashboard
           </Heading>
-          <Text fontSize="xl" color="gray.500">
+          <Text fontSize="xl" color="gray.600">
             A catalog of public components, libraries, and design systems for
             folks to reference as they build UIs.
           </Text>

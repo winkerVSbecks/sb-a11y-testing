@@ -3,15 +3,21 @@ import {
   Button,
   ButtonGroup,
   Container,
-  Flex,
   HStack,
   IconButton,
   useBreakpointValue,
   useColorModeValue,
+  Link,
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { FiMenu } from 'react-icons/fi';
-import { Logo } from './Logo';
+import { StorybookIcon } from './StorybookIcon';
+
+const navLinks = [
+  { label: 'Showcase', link: '/showcase' },
+  { label: 'Docs', link: '/docs' },
+  { label: 'Blog', link: '/blog' },
+];
 
 export const Navbar = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true });
@@ -24,14 +30,15 @@ export const Navbar = () => {
       >
         <Container maxW="container.sm" py={{ base: '4', lg: '5' }}>
           <HStack spacing="10" justify="space-between">
-            <Logo />
+            <Link href="/" aria-label="home">
+              <StorybookIcon />
+            </Link>
             {isDesktop ? (
-              <ButtonGroup
-                variant="link"
-                /* colorScheme="primary" */ spacing="8"
-              >
-                {['Showcase', 'Docs', 'Blog'].map((item) => (
-                  <Button key={item}>{item}</Button>
+              <ButtonGroup variant="link" colorScheme="primary" spacing="8">
+                {navLinks.map((item) => (
+                  <Button as="a" href={item.link} key={item.label}>
+                    {item.label}
+                  </Button>
                 ))}
               </ButtonGroup>
             ) : (

@@ -5,6 +5,7 @@ export const Logo = (props) => (
     height="8"
     width="auto"
     viewBox="0 0 200 40"
+    aria-label="Storybook"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
