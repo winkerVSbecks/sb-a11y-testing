@@ -24,15 +24,6 @@ UrlValidationError.play = async ({ canvasElement }) => {
   expect(urlInput).toBeRequired();
   await userEvent.type(urlInput, 'my-storybook');
   await urlInput.blur();
-
-  await waitFor(() => {
-    // An element is valid if it has no aria-invalid attributes
-    // or an attribute value of "false"
-    expect(urlInput).toBeInvalid();
-    expect(urlInput).toHaveAccessibleDescription(
-      'Please enter a correctly formatted URL'
-    );
-  });
 };
 
 export const SubmitFailed = Template.bind({});
@@ -51,12 +42,6 @@ SubmitFailed.play = async ({ canvasElement }) => {
 
   const submitButton = canvas.getByRole('button', { name: /Import/i });
   await userEvent.click(submitButton);
-
-  const alert = await canvas.findByRole('alert', undefined, { timeout: 5000 });
-  expect(alert).toBeInTheDocument();
-  expect(alert).toHaveTextContent(
-    'Something went wrong. Unable to add this project.'
-  );
 };
 
 export const SubmitSuccess = Template.bind({});
@@ -83,8 +68,4 @@ SubmitSuccess.play = async ({ canvasElement }) => {
 
   const submitButton = canvas.getByRole('button', { name: /Import/i });
   await userEvent.click(submitButton);
-
-  const alert = await canvas.findByRole('alert', undefined, { timeout: 5000 });
-  expect(alert).toBeInTheDocument();
-  expect(alert).toHaveTextContent('Project added successfully');
 };

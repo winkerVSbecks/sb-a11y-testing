@@ -34,7 +34,7 @@ export const Navbar = () => {
               <StorybookIcon />
             </Link>
             {isDesktop ? (
-              <ButtonGroup variant="link" colorScheme="primary" spacing="8">
+              <ButtonGroup variant="link" spacing="8">
                 {navLinks.map((item) => (
                   <Button as="a" href={item.link} key={item.label}>
                     {item.label}
